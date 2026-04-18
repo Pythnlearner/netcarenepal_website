@@ -22,6 +22,9 @@ const ContactPill = () => {
 }
 
 export interface HeroProps {
+  overline?: string
+  headline?: string
+  buttonText?: string
   carousel?: Array<{
     image: any
     label: string
