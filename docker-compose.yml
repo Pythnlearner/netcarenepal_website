@@ -5,8 +5,8 @@ services:
       dockerfile: Dockerfile
     container_name: netcare-app
     restart: always
-    expose:
-      - "3000"
+    ports:
+      - "3000:3000" # Exposed for Host Nginx
     environment:
       - DATABASE_URI=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo:27017/${DB_NAME}?authSource=admin
       - PAYLOAD_SECRET=${PAYLOAD_SECRET}
@@ -21,34 +21,12 @@ services:
     image: mongo:latest
     container_name: netcare-mongo
     restart: always
-    # Ports removed to avoid host conflicts; internal communication still works.
+    # No ports exposed to host for security; app connects via Docker network
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
     volumes:
       - netcare-db-data:/data/db
-
-  nginx:
-    image: nginx:alpine
-    container_name: netcare-nginx
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    depends_on:
-      - app
-
-  certbot:
-    image: certbot/certbot
-    container_name: netcare-certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 volumes:
   netcare-db-data:
