@@ -16,6 +16,8 @@ services:
       - NODE_ENV=production
     depends_on:
       - mongo
+    volumes:
+      - ./media:/app/media
 
   mongo:
     image: mongo:latest
