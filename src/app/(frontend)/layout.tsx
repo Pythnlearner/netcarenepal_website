@@ -14,6 +14,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: "Netcare Nepal | Fleet Management & Connectivity Solutions",
   description: "Advanced Wi-Fi, CCTV, and Fleet Management solutions for transport services in Nepal.",
