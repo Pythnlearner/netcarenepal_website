@@ -1,0 +1,60 @@
+
+# 🚀 Netcare Website Deployment Checklist
+
+Follow these steps to deploy your website and database to your VPS.
+
+## 1. VPS Initial Setup
+Connect to your VPS via SSH and ensure you have the necessary tools installed:
+- **Git**: `sudo apt update && sudo apt install git -y`
+- **Docker**: [Official Installation Guide](https://docs.docker.com/engine/install/ubuntu/)
+- **Docker Compose**: `sudo apt install docker-compose-v2 -y`
+
+## 2. Clone the Repository
+Clone your project and move into the directory:
+```bash
+git clone https://github.com/Pythnlearner/netcarenepal_website.git
+cd netcarenepal_website
+```
+
+## 3. Configure DNS
+Log in to your domain provider (e.g., GoDaddy, Namecheap) and create two **A Records**:
+- **Host**: `@` | **Value**: `<Your-VPS-IP>`
+- **Host**: `www` | **Value**: `<Your-VPS-IP>`
+
+## 4. Initialize SSL Certificate (HTTPS)
+Your site requires SSL to run securely. Use the automated script:
+```bash
+chmod +x init-ssl.sh
+sudo ./init-ssl.sh
+```
+*Note: Ensure port 80 is open on your VPS firewall.*
+
+## 5. Launch the Application
+Start the application and the MongoDB database:
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+Check if the containers are running:
+```bash
+docker compose ps
+```
+
+## 6. Restore Database Backup
+Now that the database is running, restore your data from `e:\GitHub\NetcareWebsite\netcare-mongo-backup`:
+```bash
+chmod +x restore-db.sh
+./restore-db.sh
+```
+
+## 7. Configuration Checklist
+- [ ] **Payload Secret**: Ensure `PAYLOAD_SECRET` in `docker-compose.yml` is a long, random string.
+- [ ] **MongoDB Access**: The database is accessible at `localhost:27017` using `admin` / `Cont@ct@123`.
+- [ ] **Email**: Update the `RESEND_API_KEY` if you need email functionality.
+
+---
+
+### Troubleshooting
+- **Logs**: View application logs with `docker compose logs -f app`
+- **Restart**: Restart everything with `docker compose restart`
+- **SSL Issues**: Check your Nginx config in `./nginx/conf.d/default.conf`
