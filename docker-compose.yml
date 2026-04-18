@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:3000" # Exposed for Host Nginx
     environment:
-      - DATABASE_URI=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo:27017/${DB_NAME}?authSource=admin
+      - DATABASE_URI=mongodb://${MONGO_ROOT_USER}:Cont%40ct%40123@mongo:27017/${DB_NAME}?authSource=admin
       - PAYLOAD_SECRET=${PAYLOAD_SECRET}
       - NEXT_PUBLIC_SERVER_URL=https://www.netcarenepal.com
       - RESEND_API_KEY=${RESEND_API_KEY}
