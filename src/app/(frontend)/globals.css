@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-netcare-navy: #041E42;
+  --color-netcare-red: #A32020;
+  --color-netcare-ochre: #D07928;
+  --color-netcare-warm-gray: #D7D2CB;
+  --color-netcare-lilac: #C4B9CD;
+
+  /* Brand Aliases - Re-mapped for better uniformity and 2026 brand fidelity */
+  --color-midnight-deep: var(--color-netcare-navy);
+  --color-mist-white: var(--color-netcare-warm-gray);
+  --color-steel-blue-gray: var(--color-netcare-lilac); /* Using lilac for secondary text for better palette match */
+  --color-electric-accent: var(--color-netcare-red);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-netcare-navy text-netcare-warm-gray antialiased min-h-screen text-sm md:text-base leading-relaxed;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1 { 
+    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05];
+  }
+  h2 { 
+    @apply text-2xl md:text-3xl font-bold leading-snug;
+  }
+  h3 { 
+    @apply text-lg md:text-xl font-semibold leading-normal;
+  }
+  h4 { 
+    @apply text-base md:text-lg font-bold;
+  }
+}
+
+@layer utilities {
+  .bg-aero-surface {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl;
+  }
+
+  .text-muted {
+    @apply text-netcare-warm-gray/60;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+
+  .pause-marquee {
+    animation-play-state: paused !important;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+}

@@ -1,0 +1,22 @@
+import config from '@/payload.config'
+import { RootPage, generatePageMetadata } from '@payloadcms/next/views'
+// @ts-ignore
+import { importMap } from '../importMap'
+
+type Args = {
+  params: Promise<{
+    segments: string[]
+  }>
+  searchParams: Promise<{
+    [key: string]: string | string[]
+  }>
+}
+
+export const generateMetadata = ({ params, searchParams }: Args) =>
+  generatePageMetadata({ config, params, searchParams })
+
+const Page = async ({ params, searchParams }: Args) => {
+  return RootPage({ config, params, searchParams, importMap })
+}
+
+export default Page

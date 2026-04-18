@@ -1,0 +1,53 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* 
+   Netcare Nepal Payload CMS Styling
+   --------------------------------
+   Premium Enterprise "10xmedia" Inspired Theme
+   Native overrides ensure perfect structural integrity and text wrapping.
+*/
+
+:root {
+  /* Ultra-Premium Typography */
+  --font-family-sans: 'Inter', -apple-system, system-ui, sans-serif !important;
+  
+  /* Soft, Expensive Backgrounds */
+  --theme-bg: #f8fafc !important; /* Soft slate background */
+  --theme-elevation-0: #f8fafc !important;
+  --theme-elevation-50: #ffffff !important; /* Pure white cards */
+  --theme-elevation-100: #ffffff !important;
+  
+  /* Delicate Borders */
+  --theme-border-color: #e2e8f0 !important;
+}
+
+/* Gentle Readability Bump without breaking wrapping */
+body {
+  font-size: 16px !important;
+  background-color: var(--theme-bg) !important;
+}
+
+/* Professional Card Elevaton & Transitions */
+.card, .dashboard__card-list__item {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.02), 0 2px 4px -2px rgb(0 0 0 / 0.02) !important;
+  border: 1px solid var(--theme-border-color) !important;
+  border-radius: 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+.card:hover, .dashboard__card-list__item:hover {
+  box-shadow: 0 10px 20px -3px rgb(0 0 0 / 0.04), 0 4px 6px -4px rgb(0 0 0 / 0.04) !important;
+  border-color: #cbd5e1 !important;
+  transform: translateY(-2px);
+}
+
+/* Clean up dashboard headers */
+.dashboard__group-title {
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  color: #0f172a !important; 
+  font-size: 20px !important;
+  margin-bottom: 24px !important;
+}
