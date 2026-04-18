@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /netcare-admin
+
+Sitemap: https://www.netcarenepal.com/sitemap.xml

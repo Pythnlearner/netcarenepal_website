@@ -8,6 +8,20 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/netcare-admin',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/netcare-admin/:path*',
+        destination: '/',
+        permanent: true,
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {
