@@ -16,6 +16,11 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Payload 3.0 requires these during build
+ENV PAYLOAD_SECRET=f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3
+ENV DATABASE_URI=mongodb://127.0.0.1:27017/netcare-website
+ENV NEXT_PUBLIC_SERVER_URL=https://www.netcarenepal.com
+
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
