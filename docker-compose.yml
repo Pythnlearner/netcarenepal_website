@@ -21,8 +21,7 @@ services:
     image: mongo:latest
     container_name: netcare-mongo
     restart: always
-    ports:
-      - "27017:27017" # Keep this exposed for admin access, you can remove ports and use 'expose' for security
+    # Ports removed to avoid host conflicts; internal communication still works.
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
